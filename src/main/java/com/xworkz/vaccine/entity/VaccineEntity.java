@@ -1,18 +1,20 @@
-package com.xworkz.welcomepage.entity;
+package com.xworkz.vaccine.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "user_details")
-public class WelcomePageEntity {
+@Table(name = "vaccine_details")
+@NamedQuery(name="getOtp",query="SELECT otp FROM VaccineEntity WHERE emailId=:Email")
+public class VaccineEntity {
 
-	public WelcomePageEntity() {
+	public VaccineEntity() {
 		System.out.println(this.getClass().getSimpleName() + " Created");
 	}
 

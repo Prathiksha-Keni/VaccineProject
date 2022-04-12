@@ -1,4 +1,4 @@
-package com.xworkz.welcomepage.dao;
+package com.xworkz.vaccine.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

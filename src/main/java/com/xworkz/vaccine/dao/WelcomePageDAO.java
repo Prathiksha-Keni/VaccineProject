@@ -1,4 +1,4 @@
-package com.xworkz.welcomepage.dao;
+package com.xworkz.vaccine.dao;
 
 public interface WelcomePageDAO {
 	public boolean saveUserEntity(Object entity);

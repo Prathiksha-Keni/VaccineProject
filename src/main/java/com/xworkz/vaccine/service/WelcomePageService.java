@@ -1,4 +1,4 @@
-package com.xworkz.welcomepage.service;
+package com.xworkz.vaccine.service;
 
 
 

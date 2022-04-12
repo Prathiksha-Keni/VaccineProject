@@ -1,4 +1,4 @@
-package com.xworkz.welcomepage.exception;
+package com.xworkz.vaccine.exception;
 
 public class InvalidEmailException extends RuntimeException {
 

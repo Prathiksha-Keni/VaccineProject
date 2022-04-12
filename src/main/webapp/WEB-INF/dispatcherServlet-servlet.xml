@@ -15,7 +15,7 @@
 		<property name="dataSource" ref="driverManagerDataSource"></property>
 		<property name="annotatedClasses">
 			<list>
-				<value>com.xworkz.welcomepage.entity.WelcomePageEntity</value>
+				<value>com.xworkz.vaccine.entity.VaccineEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
