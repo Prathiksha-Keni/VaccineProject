@@ -34,20 +34,13 @@ public class OTPServiceImpl implements OTPService {
 	}
 
 	@Override
-	public boolean verifyOtp(String otp, String email) {
+	public boolean verifyOtp(String otp) {
 		System.out.println("Invoked verifyOtp ");
-		VaccineEntity otpFromTableByEmail = otpDAO.getOtpFromTableByEmail(email);
+		String otpFromTable = otpDAO.getOtpFromTable(otp);
 		try {
-			if (otpFromTableByEmail != null) {
-				VaccineEntity entity = new VaccineEntity();
-				 String otpFromDb = entity.getOtp();
-				 System.out.println("otp from db"+otpFromDb);
-				 String emailFromDb = entity.getEmailId();
-				 System.out.println("email from db"+emailFromDb);
-				if (otp.equals(otpFromDb)) {
-					System.out.println("OTP is Verified message from serviceimpl");
-					return true;
-				}
+			if (otp.equals(otpFromTable)) {
+				System.out.println("OTP is Verified message from serviceimpl");
+				return true;
 			} else {
 				throw new OTPNotVerifiedException("OTP is not Verified message from serviceimpl");
 			}
@@ -56,5 +49,4 @@ public class OTPServiceImpl implements OTPService {
 		}
 		return false;
 	}
-
 }

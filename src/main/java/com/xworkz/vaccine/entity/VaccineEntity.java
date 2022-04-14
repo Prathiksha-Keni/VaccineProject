@@ -11,7 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "vaccine_details")
-@NamedQuery(name="getOtp",query="SELECT otp FROM VaccineEntity WHERE emailId=:Email")
+@NamedQuery(name = "getOtp", query = "SELECT o.otp FROM VaccineEntity as o WHERE otp=:Otp")
 public class VaccineEntity {
 
 	public VaccineEntity() {

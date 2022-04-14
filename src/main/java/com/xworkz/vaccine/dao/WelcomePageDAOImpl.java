@@ -12,7 +12,7 @@ public class WelcomePageDAOImpl implements WelcomePageDAO {
 	public WelcomePageDAOImpl() {
 		System.out.println(this.getClass().getSimpleName() + " Bean created");
 	}
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 

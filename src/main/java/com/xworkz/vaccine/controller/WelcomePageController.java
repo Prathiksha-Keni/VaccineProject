@@ -3,7 +3,6 @@ package com.xworkz.vaccine.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,7 +46,6 @@ public class WelcomePageController {
 						return "/WelcomePage.jsp";
 					}
 				}
-
 			} else {
 				System.out.println("OTP and Email is not saved to database");
 
@@ -60,11 +58,9 @@ public class WelcomePageController {
 			model.addAttribute("message2", "InValid Email Please Enter a valid Email " + email);
 
 			System.out.println("Four Digit OTP is not Generated ");
-			model.addAttribute("message3", "Four Digit OTP is not Generated ");
-			return "/WelcomePage.jsp";
 
+			return "/WelcomePage.jsp";
 		}
 		return "/WelcomePage.jsp";
 	}
-
 }

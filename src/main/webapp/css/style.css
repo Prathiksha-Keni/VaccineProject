@@ -1,24 +1,34 @@
 @charset "ISO-8859-1";
+        .card-header {
+            padding: 70px;
+            background-color: lightskyblue;
+            color: black;
+            text-align: center;
+            font-size: 30px;
+        }
+        
+        .card-footer {
+            padding: 92px;
+            background-color: lightskyblue;
+            color: black;
+            text-align: right;
+            font-size: 20px;
+        }
+        
+        .card {
+            margin: 0 auto;
+            /* Added */
+            float: none;
+            /* Added */
+            margin-bottom: 0px;
+            /* Added */
+        }
+        
+        .body {
+            background-image: url(/tester/image/1.jpg);
+            background-position: center;
+            background-repeat: repeat-x;
+            background-size: 497px;
+        }
 
- .card-body {
-     background-color: lavender;
- }
- 
- .body {
-     margin-top: 10%;
- }
- 
- body {
-     margin-top: 2%;
-     margin-bottom: 2%;
-     background-image: url(/vaccine/src/main/webapp/image/color_gradient.jpg);
- }
- 
- .card-title {
-     text-align: center;
- }
- 
- .head {
-     text-align: center;
-     color: orangered;
- }
+

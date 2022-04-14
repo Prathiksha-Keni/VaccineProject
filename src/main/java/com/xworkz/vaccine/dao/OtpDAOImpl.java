@@ -6,8 +6,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.xworkz.vaccine.entity.VaccineEntity;
-import com.xworkz.vaccine.exception.EmailNotFoundException;
+import com.xworkz.vaccine.exception.OTPNotFoundException;
 
 @Component
 public class OtpDAOImpl implements OtpDAO {
@@ -20,24 +19,23 @@ public class OtpDAOImpl implements OtpDAO {
 	private SessionFactory factory;
 
 	@Override
-	public VaccineEntity getOtpFromTableByEmail(String email) {
-		System.out.println("Invoked getOtpFromTableByEmail from DAO Impl");
+	public String getOtpFromTable(String otp) {
+		System.out.println("Invoked getOtpFromTable from DAO Impl");
 		Session session = null;
-
+		String Otp = null;
 		try {
 			session = factory.openSession();
 
 			Query query = session.getNamedQuery("getOtp");
-			query.setParameter("Email", email);
-			VaccineEntity result = (VaccineEntity) query.uniqueResult();
-			System.out.println("unique result is " + result);
-			if (result != null) {
-				return (VaccineEntity) result;
+			query.setParameter("Otp", otp);
+			Otp = (String) query.uniqueResult();
+			System.out.println("unique result is " + Otp);
+			if (Otp != null) {
+				return Otp;
 			} else {
-				throw new EmailNotFoundException("Email Found Exception");
+				throw new OTPNotFoundException("OTP Not Found Exception");
 			}
-
-		} catch (Exception e) {
+		} catch (OTPNotFoundException e) {
 			session.getTransaction().rollback();
 		} finally {
 			if (session != null) {

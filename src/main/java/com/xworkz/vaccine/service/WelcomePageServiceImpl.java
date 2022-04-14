@@ -2,7 +2,6 @@ package com.xworkz.vaccine.service;
 
 import java.util.Random;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -26,7 +25,7 @@ public class WelcomePageServiceImpl implements WelcomePageService {
 	public boolean validateEmail(String email) {
 		System.out.println("Invoked validateEmail");
 		try {
-			if (email != null && !email.isEmpty() && email.contains("@") || email.endsWith(".com")) {
+			if (email != null && !email.isEmpty() && email.contains("@") && email.endsWith(".com")) {
 				System.out.println("Valid Email address");
 				return true;
 			} else {
@@ -72,14 +71,14 @@ public class WelcomePageServiceImpl implements WelcomePageService {
 	}
 
 	@Override
-	public boolean sendOtpToMail(String email,String otp) {
+	public boolean sendOtpToMail(String email, String otp) {
 		System.out.println("Invoked sendOtpToMail");
 		try {
 			System.out.println("Invoked sendOtpToMail");
 			SimpleMailMessage message = new SimpleMailMessage();
 			message.setTo(email);
 			message.setSubject("Vaccine OTP");
-			message.setText(otp+" Please find the otp for vaccination");
+			message.setText(otp + " Please find the otp for vaccination");
 			mailSender.send(message);
 			System.out.println("Mail Sent successfull");
 			return true;
