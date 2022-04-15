@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.xworkz.vaccine.dao.WelcomePageDAO;
 
 import com.xworkz.vaccine.entity.VaccineEntity;
+import com.xworkz.vaccine.exception.EmailNotVerifiedException;
 import com.xworkz.vaccine.exception.InvalidEmailException;
 
 @Component
@@ -24,33 +25,37 @@ public class WelcomePageServiceImpl implements WelcomePageService {
 	@Override
 	public boolean validateEmail(String email) {
 		System.out.println("Invoked validateEmail");
+		boolean valid = false;
 		try {
 			if (email != null && !email.isEmpty() && email.contains("@") && email.endsWith(".com")) {
 				System.out.println("Valid Email address");
-				return true;
+				valid = true;
+				return valid;
 			} else {
 				throw new InvalidEmailException("Invalid Email");
 			}
-		} catch (InvalidEmailException e) {
-			System.out.println("InvalidEmailException" + e);
+		} catch (InvalidEmailException exception) {
+			System.out.println("InvalidEmailException" + exception.getMessage());
 		}
-		return false;
+		return valid;
 
 	}
 
 	@Override
 	public boolean saveOtpToDataBase(String email, String otp) {
+		boolean isUserEntitySaved=false;
 		try {
 			System.out.println("Invoked saveOtpToDataBase");
 			VaccineEntity entity = new VaccineEntity();
 			entity.setEmailId(email);
 			entity.setOtp(otp);
-			boolean isUserEntitySaved = welcomePageDAO.saveUserEntity(entity);
+			isUserEntitySaved = welcomePageDAO.saveUserEntity(entity);
+			isUserEntitySaved=true;
 			return isUserEntitySaved;
-		} catch (Exception e) {
-			System.out.println(e);
+		} catch (Exception exception) {
+			System.out.println(exception.getMessage());
 		}
-		return false;
+		return isUserEntitySaved;
 
 	}
 
@@ -64,8 +69,8 @@ public class WelcomePageServiceImpl implements WelcomePageService {
 			int number = rnd.nextInt(9999);
 			// this will convert any number sequence into 4 character.
 			return String.format("%04d", number);
-		} catch (Exception e) {
-			System.out.println(e);
+		} catch (Exception exception) {
+			System.out.println(exception.getMessage());
 		}
 		return null;
 	}
@@ -73,6 +78,7 @@ public class WelcomePageServiceImpl implements WelcomePageService {
 	@Override
 	public boolean sendOtpToMail(String email, String otp) {
 		System.out.println("Invoked sendOtpToMail");
+		boolean sendToMail = false;
 		try {
 			System.out.println("Invoked sendOtpToMail");
 			SimpleMailMessage message = new SimpleMailMessage();
@@ -81,11 +87,31 @@ public class WelcomePageServiceImpl implements WelcomePageService {
 			message.setText(otp + " Please find the otp for vaccination");
 			mailSender.send(message);
 			System.out.println("Mail Sent successfull");
-			return true;
-		} catch (Exception e) {
-			System.out.println(e);
+			sendToMail = true;
+			return sendToMail;
+		} catch (Exception exception) {
+			System.out.println(exception.getMessage());
 		}
-		return false;
+		return sendToMail;
+	}
+
+	@Override
+	public boolean verifyEmail(String email) {
+		boolean verifyEmail = true;
+		System.out.println("Invoked verifyEmail");
+		String emailFromTable = welcomePageDAO.VerfiyEmail(email);
+		try {
+			if (email.equals(emailFromTable)) {
+				System.out.println("Email Id Already exists Please try with different Email");
+				verifyEmail = false;
+				return verifyEmail;
+			} else {
+				throw new EmailNotVerifiedException("Email Id Already exists");
+			}
+		} catch (EmailNotVerifiedException exception) {
+			System.out.println("EmailNotVerifiedException" + exception.getMessage());
+		}
+		return verifyEmail;
 	}
 
 }

@@ -9,54 +9,25 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import lombok.Data;
+
+@Data
 @Entity
-@Table(name = "vaccine_details")
-@NamedQuery(name = "getOtp", query = "SELECT o.otp FROM VaccineEntity as o WHERE otp=:Otp")
+@Table(name = "user_data")
+@NamedQuery(name = "getOtp", query = "SELECT OTP.otp FROM VaccineEntity as OTP WHERE otp=:Otp")
+@NamedQuery(name = "verifyEmail", query = "SELECT EMAIL.emailId FROM VaccineEntity as EMAIL WHERE emailId=:Email")
 public class VaccineEntity {
 
-	public VaccineEntity() {
-		System.out.println(this.getClass().getSimpleName() + " Created");
-	}
-
-	@Column(name = "userId")
+	@Column(name = "USER_ID")
 	@Id
 	@GenericGenerator(name = "primaryKey", strategy = "increment")
 	@GeneratedValue(generator = "primaryKey")
 	private int userId;
 
-	@Column(name = "emailId")
+	@Column(name = "USER_EMAIL")
 	private String emailId;
 
-	@Column(name = "otp")
+	@Column(name = "OTP")
 	private String otp;
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public String getOtp() {
-		return otp;
-	}
-
-	public void setOtp(String otp) {
-		this.otp = otp;
-	}
-
-	@Override
-	public String toString() {
-		return "WelcomePageEntity [userId=" + userId + ", emailId=" + emailId + ", otp=" + otp + "]";
-	}
 
 }

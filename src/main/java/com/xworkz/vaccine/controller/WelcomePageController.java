@@ -21,46 +21,52 @@ public class WelcomePageController {
 
 	@RequestMapping("/emailOtp")
 	public String onGetOtpClicked(@RequestParam String email, Model model) {
+		System.out.println("--------------");
 		System.out.println("Invoked onGetOtpClicked");
 		boolean isEmailValid = welcomePageService.validateEmail(email);
+
 		if (isEmailValid) {
 			System.out.println("Email is Valid " + email);
+			boolean isEmailVerified = welcomePageService.verifyEmail(email);
+			if (isEmailVerified) {
+				System.out.println("Email is verified");
+				String isOtpGenerated = welcomePageService.generateFourDigitOtp();
+				System.out.println("Four Digit OTP is Generated " + isOtpGenerated);
+				if (isOtpGenerated != null) {
+					System.out.println("OTP and Email saved to database");
+					boolean isOtpSavedToDb = welcomePageService.saveOtpToDataBase(email, isOtpGenerated);
 
-			String isOtpGenerated = welcomePageService.generateFourDigitOtp();
-
-			System.out.println("Four Digit OTP is Generated " + isOtpGenerated);
-
-			if (isOtpGenerated != null) {
-				System.out.println("OTP and Email saved to database");
-
-				boolean isOtpSavedToDb = welcomePageService.saveOtpToDataBase(email, isOtpGenerated);
-				if (isOtpSavedToDb) {
-					System.out.println("OTP sent to Mail");
-					model.addAttribute("message", "OTP sent to Mail");
-					boolean isMailSent = welcomePageService.sendOtpToMail(email, isOtpGenerated);
-					if (isMailSent) {
-						return "/WEB-INF/pages/OtpPage.jsp";
+					if (isOtpSavedToDb) {
+						System.out.println("OTP sent to Mail");
+						model.addAttribute("message", "OTP sent to Mail");
+						boolean isMailSent = welcomePageService.sendOtpToMail(email, isOtpGenerated);
+						if (isMailSent) {
+							return "/WEB-INF/pages/OtpPage.jsp";
+						}
 					} else {
 						System.out.println("OTP not sent to Mail");
 						model.addAttribute("message1", "OTP not sent to Mail");
 						return "/WelcomePage.jsp";
 					}
-				}
-			} else {
-				System.out.println("OTP and Email is not saved to database");
+				} else {
+					System.out.println("OTP and Email is not saved to database");
 
+					return "/WelcomePage.jsp";
+				}
+
+			} else {
+				System.out.println("Email is not verified from controller");
+				model.addAttribute("VerifyEmail", "Email already exists please enter a different email");
+				System.out.println("Four Digit OTP is not Generated ");
 				return "/WelcomePage.jsp";
 			}
-		}
 
-		else {
+		} else {
 			System.out.println("InValid Email Please Enter a valid Email " + email);
 			model.addAttribute("message2", "InValid Email Please Enter a valid Email " + email);
-
-			System.out.println("Four Digit OTP is not Generated ");
-
 			return "/WelcomePage.jsp";
 		}
 		return "/WelcomePage.jsp";
+
 	}
 }

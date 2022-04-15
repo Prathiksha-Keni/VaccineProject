@@ -10,4 +10,6 @@ public interface WelcomePageService {
 
 	boolean sendOtpToMail(String email, String otp);
 
+	boolean verifyEmail(String email);
+
 }

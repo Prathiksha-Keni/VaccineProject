@@ -20,33 +20,37 @@ public class OTPServiceImpl implements OTPService {
 
 	@Override
 	public boolean validateOtp(String otp) {
+		boolean valid=false;
 		try {
 			if (otp != null && !otp.isEmpty() && otp.length() == 4) {
 				System.out.println("OTP is valid message from serviceimpl");
-				return true;
+				valid =true;
+				return valid;
 			} else {
 				throw new InvalidOTPException("Invalid OTP message from serviceimpl");
 			}
-		} catch (InvalidOTPException e) {
-			System.out.println("InvalidOTPException" + e);
+		} catch (InvalidOTPException exception) {
+			System.out.println("InvalidOTPException" + exception.getMessage());
 		}
-		return false;
+		return valid;
 	}
 
 	@Override
 	public boolean verifyOtp(String otp) {
+		boolean verify=false;
 		System.out.println("Invoked verifyOtp ");
 		String otpFromTable = otpDAO.getOtpFromTable(otp);
 		try {
 			if (otp.equals(otpFromTable)) {
 				System.out.println("OTP is Verified message from serviceimpl");
-				return true;
+				verify=true;
+				return verify;
 			} else {
 				throw new OTPNotVerifiedException("OTP is not Verified message from serviceimpl");
 			}
-		} catch (OTPNotVerifiedException e) {
-			System.out.println("OTPNotVerifiedException" + e);
+		} catch (OTPNotVerifiedException exception) {
+			System.out.println("OTPNotVerifiedException" + exception.getMessage());
 		}
-		return false;
+		return verify;
 	}
 }

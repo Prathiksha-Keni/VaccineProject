@@ -25,7 +25,6 @@ public class OtpDAOImpl implements OtpDAO {
 		String Otp = null;
 		try {
 			session = factory.openSession();
-
 			Query query = session.getNamedQuery("getOtp");
 			query.setParameter("Otp", otp);
 			Otp = (String) query.uniqueResult();
@@ -35,8 +34,8 @@ public class OtpDAOImpl implements OtpDAO {
 			} else {
 				throw new OTPNotFoundException("OTP Not Found Exception");
 			}
-		} catch (OTPNotFoundException e) {
-			session.getTransaction().rollback();
+		} catch (OTPNotFoundException exception) {
+			System.out.println("OTPNotFoundException " + exception.getMessage());
 		} finally {
 			if (session != null) {
 				session.close();
@@ -45,7 +44,7 @@ public class OtpDAOImpl implements OtpDAO {
 				System.out.println("Session is not closed");
 			}
 		}
-		return null;
+		return Otp;
 	}
 
 }

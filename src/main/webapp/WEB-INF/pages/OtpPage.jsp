@@ -11,40 +11,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<Style>
-.card-header {
-	padding: 70px;
-	background-color: lightskyblue;
-	color: black;
-	text-align: center;
-	font-size: 30px;
-	font-weight: bold;
-}
+<link rel="stylesheet" href="./css/style.css">
 
-.card-footer {
-	padding: 92px;
-	background-color: lightskyblue;
-	color: black;
-	text-align: right;
-	font-size: 20px;
-}
-
-.card {
-	margin: 0 auto;
-	/* Added */
-	float: none;
-	/* Added */
-	margin-bottom: 0px;
-	/* Added */
-}
-
-.body {
-	background-image: url(/image/vaccine.jpg);
-	background-position: center;
-	background-repeat: repeat-x;
-	background-size: 497px;
-}
-</Style>
 </head>
 
 
