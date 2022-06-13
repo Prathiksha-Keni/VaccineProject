@@ -1,7 +1,7 @@
 @charset "ISO-8859-1";
 
 .card-header {
-	height: 25%;
+	height: 10%;
 	width: 100%;
 	background-color: lightskyblue;
 	color: black;
@@ -25,7 +25,7 @@
 .card {
 	margin: 0 auto;
 	float: none;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 
 body {
@@ -34,3 +34,24 @@ body {
 	background-repeat: repeat-x;
 	background-size: 497px;
 }
+
+.card-header2 {
+	background-color: wheat;
+	color: black;
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.card-footer2 {
+	height: 10%;
+	padding: 10px;
+	background-color: lightskyblue;
+	color: black;
+	text-align: right;
+	font-size: 20px;
+	position: relative;
+	left: 0;
+	width: 100%;
+}
+

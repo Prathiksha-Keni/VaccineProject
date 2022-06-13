@@ -5,12 +5,8 @@
 	version="2.5">
 	<display-name>vaccine</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>/WelcomePage.jsp</welcome-file>
+
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
@@ -25,4 +21,43 @@
 		<servlet-name>dispatcherServlet</servlet-name>
 		<url-pattern>/otpvalidate</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/addMember</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/registerUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/onclickregister</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/Welcomelogin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/reset</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/resetPassword</url-pattern>
+	</servlet-mapping>
+
+
 </web-app>

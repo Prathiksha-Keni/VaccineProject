@@ -5,4 +5,8 @@ public interface WelcomePageDAO {
 
 	String VerfiyEmail(String email);
 
+	int getMemberCountByEmail(String email);
+
+	int updateMemberCount(String email, int count);
+
 }

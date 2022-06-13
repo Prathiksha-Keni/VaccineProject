@@ -16,6 +16,9 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.xworkz.vaccine.entity.VaccineEntity</value>
+				<value>com.xworkz.vaccine.entity.AddMemberEntity</value>
+				<value>com.xworkz.vaccine.entity.RegisterUserEntity</value>
+				
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -45,10 +48,17 @@
 		<property name="location"
 			value="WEB-INF/classes/database.properties"></property>
 	</bean>
+	
+	<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
 	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="username" value=""></property>
-		<property name="password" value=""></property>
+		 <property name="username" value="keniprathiksha@gmail.com"></property>
+		<property name="password" value="Prathiksha$67#abc"></property>
+		
+		<!-- <property name="username" value="dimplejul07@gmail.com"></property>
+		<property name="password" value="Dimple0307"></property>-->
+		
+		
 		<property name="host" value="smtp.gmail.com"></property>
 		<property name="port" value="587"></property>
 		<property name="javaMailProperties">

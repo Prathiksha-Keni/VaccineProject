@@ -11,16 +11,18 @@ import com.xworkz.vaccine.exception.OTPNotFoundException;
 @Component
 public class OtpDAOImpl implements OtpDAO {
 
+	@Autowired
+	private SessionFactory factory;
+
 	public OtpDAOImpl() {
 		System.out.println(this.getClass().getSimpleName() + " Bean created");
 	}
 
-	@Autowired
-	private SessionFactory factory;
-
+	@SuppressWarnings("rawtypes")
 	@Override
 	public String getOtpFromTable(String otp) {
-		System.out.println("Invoked getOtpFromTable from DAO Impl");
+		System.out.println("-----------------------------------------------------------");
+		System.out.println(" Invoked getOtpFromTable (message from OTP DAO Impl) ");
 		Session session = null;
 		String Otp = null;
 		try {
@@ -28,14 +30,14 @@ public class OtpDAOImpl implements OtpDAO {
 			Query query = session.getNamedQuery("getOtp");
 			query.setParameter("Otp", otp);
 			Otp = (String) query.uniqueResult();
-			System.out.println("unique result is " + Otp);
+			System.out.println("(message from OTP DAO Impl) unique result is :- " + Otp);
 			if (Otp != null) {
 				return Otp;
 			} else {
-				throw new OTPNotFoundException("OTP Not Found Exception");
+				throw new OTPNotFoundException(" OTP Not Found Exception (message from OTP DAO Impl)");
 			}
 		} catch (OTPNotFoundException exception) {
-			System.out.println("OTPNotFoundException " + exception.getMessage());
+			System.out.println("OTP Not Found Exception (message from OTP DAO Impl) " + exception.getMessage());
 		} finally {
 			if (session != null) {
 				session.close();
