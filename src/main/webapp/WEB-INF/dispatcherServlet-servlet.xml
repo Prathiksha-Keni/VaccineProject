@@ -52,11 +52,9 @@
 	<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
 	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		 <property name="username" value="keniprathiksha@gmail.com"></property>
-		<property name="password" value="Prathiksha$67#abc"></property>
-		
-		<!-- <property name="username" value="dimplejul07@gmail.com"></property>
-		<property name="password" value="Dimple0307"></property>-->
+		 <property name="username" value=""></property>
+		<property name="password" value=""></property>
+	
 		
 		
 		<property name="host" value="smtp.gmail.com"></property>
